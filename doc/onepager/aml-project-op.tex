@@ -1,0 +1,76 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{helvet}
+\usepackage{enumitem}
+
+% Page margins to fit on one page
+\geometry{
+ a4paper,
+ left=2cm,
+ right=2cm,
+ top=2cm,
+ bottom=2cm
+}
+
+% Font (modern, sans-serif)
+\renewcommand{\familydefault}{\sfdefault}
+
+% No paragraph indentation
+\setlength{\parindent}{0pt}
+% Space between paragraphs
+\setlength{\parskip}{1.0ex}
+
+%-------------------------------------------------
+% TITLE SECTION
+%-------------------------------------------------
+
+\title{{\textbf{VegDetect: Real-Time Detection of Vegan Product Labels Using Compact AI Models on Edge Devices}}}
+\author{\small{Lorenz Hund - Student ID: 3138947} \\ \small{Advanced Machine Learning Project WS25/26}}
+\date{} % No date under title
+
+%-------------------------------------------------
+% DOCUMENT START
+%-------------------------------------------------
+\begin{document}
+
+\maketitle
+\pagestyle{empty} % <-- NEU: Entfernt die Seitenzahl
+
+%-------------------------------------------------
+\section*{1. Motivation}
+%-------------------------------------------------
+
+Identifying vegan products in retail stores is often a time-consuming process for consumers, requiring them to search for small labels or study ingredient lists. 
+Furthermore, according to European Parliament concerns, product names like "vegan sausage" apparently cause massive confusion and pose a serious threat to consumers. 
+To counter this (almost) life-threatening deception and simplify the shopping process, this project will develop an AI-based real-time solution.
+
+The goal is a compact system that runs directly on an edge device (e.g., laptop or smartphone) to detect the official "V-Label" (vegan) using the camera.
+
+%-------------------------------------------------
+\section*{2. Dataset \& Methodology}
+%-------------------------------------------------
+
+The project will utilize the publicly available \textbf{NutriGreen Dataset}\footnote{Drole, J., Pravst, I., Eftimov, T., \& Seljak, B. K. (2023). NutriGreen Image Dataset: A Collection of Annotated Nutrition, Organic, and Vegan Food Products (Version 1.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.8374047}. This dataset is ideal as it already provides thousands of images of food packaging, including annotations for the V-Label in YOLO format, eliminating the need for manual data collection or labeling.
+
+The core of the project is the evaluation of "one-stage" object detection architectures. These models are known for their high inference speed and are therefore ideal for edge applications.
+
+\begin{itemize}[leftmargin=*]
+ \item \textbf{Model Candidates:} Various lightweight architectures will be compared (e.g., \textbf{YOLOv8-Nano}, \textbf{EfficientDet-Lite}, or \textbf{MobileNet-SSD}).
+ \item \textbf{Training:} Training will be conducted via transfer learning, where pre-trained models are fine-tuned for the specific task (detecting the V-Label class).
+ \item \textbf{Deployment:} The trained models will be exported to an efficient inference format to maximize performance on a CPU.
+\end{itemize}
+
+%-------------------------------------------------
+\section*{3. Project Goals}
+%-------------------------------------------------
+
+This project has two primary objectives:
+
+\begin{enumerate}[leftmargin=*]
+ \item \textbf{Functional Prototype:} Development of an application that demonstrates real-time V-Label detection on products using a standard webcam (live feed).
+ \item \textbf{Benchmark Analysis:} Performing a systematic evaluation of the trade-off between inference speed (Frames Per Second - FPS) and detection accuracy (mean Average Precision - mAP) of the evaluated models on a reference laptop (CPU inference).
+\end{enumerate}
+\end{document}
